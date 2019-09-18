@@ -31,8 +31,10 @@ class BgSlider():
         file = files[self.index]
         print(file)
         ctypes.windll.user32.SystemParametersInfoW(20, 0, file, 0)
-        # print(time.time())
-        self.index += 1
+        if self.index == len(files) - 1:
+            self.index = 0
+        else:
+            self.index += 1
         time.sleep(INTERVAL_SEC)
 
     def schedule(self, interval, f, wait=True):
